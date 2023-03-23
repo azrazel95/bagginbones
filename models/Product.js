@@ -13,7 +13,8 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      onDelete: 'CASCADE'
     },
     product_name: {
       type: DataTypes.STRING,
@@ -38,7 +39,8 @@ Product.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
-        key: 'id'
+        key: 'id',
+        unique: false,
       }
     }
   },
