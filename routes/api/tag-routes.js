@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(tagData);
   } catch (err) {
-    console.log("dunno")
     res.status(500).json(err);
   }
 });
@@ -79,7 +78,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: 'No tag with this id!' });
       return;
     }
-    res.status(200).json(tagData);
+    res.status(200).json("tag deleted!");
   } catch (err) {
     res.status(500).json(err);
   }
