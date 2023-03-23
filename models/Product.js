@@ -1,14 +1,15 @@
-// import important parts of sequelize library
+// import sequelize requirements
 const { Model, DataTypes } = require('sequelize');
-// import our database connection from config.js
+//importing the settings from config
 const sequelize = require('../config/connection');
 
-// Initialize Product model (table) by extending off Sequelize's Model class
+// setting up our class
 class Product extends Model { }
 
-// set up fields and rules for Product model
+
 Product.init(
   {
+    //self incrementing id, cascades on deletion, primary key
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -16,11 +17,13 @@ Product.init(
       autoIncrement: true,
       onDelete: 'CASCADE'
     },
+    //the name, must exist
     product_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
     price: {
+      //price, with a validation to ensure it is a decimal
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
@@ -28,6 +31,7 @@ Product.init(
       }
     },
     stock: {
+      //stock count of the item, with a validation to ensure it is a number and a defaultvalue of 10
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 10,
@@ -36,6 +40,7 @@ Product.init(
       }
     },
     category_id: {
+      //foreignkey category id
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
@@ -45,6 +50,7 @@ Product.init(
     }
   },
   {
+    //sequelize model settings
     sequelize,
     timestamps: false,
     freezeTableName: true,

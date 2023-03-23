@@ -21,14 +21,16 @@ Product.belongsToMany(Tag, {
     unique: false
 
   },
+  //foreignkey to import
   foreignKey: 'product_id'
 })
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
-  through:{
+  through: {
     model: ProductTag,
     unique: false
   },
+  //foreignkey to import
   foreignKey: 'tag_id'
 })
 module.exports = {
