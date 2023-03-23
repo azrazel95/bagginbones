@@ -1,26 +1,31 @@
+// import sequelize requirements
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class ProductTag extends Model {}
+// setting up our class
+class ProductTag extends Model { }
 
 ProductTag.init(
   {
+    //self incrementing id, cascades on deletion, primary key
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    product_id:{
+    product_id: {
+      //foreignkey product id
       type: DataTypes.INTEGER,
-      references:{
+      references: {
         model: 'product',
         key: 'id',
         unique: true
       }
     },
-    tag_id:{
+    tag_id: {
+      // foreignkey tag id
       type: DataTypes.INTEGER,
       references: {
         model: 'tag',
@@ -30,6 +35,7 @@ ProductTag.init(
     }
   },
   {
+    //sequelize model settings
     sequelize,
     timestamps: false,
     freezeTableName: true,

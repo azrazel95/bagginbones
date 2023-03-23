@@ -1,5 +1,6 @@
+//imports tag model
 const { Tag } = require('../models');
-
+//seed data
 const tagData = [
   {
     tag_name: 'rock music',
@@ -26,7 +27,7 @@ const tagData = [
     tag_name: 'pop culture',
   },
 ];
-
+//seeds
 const seedTags = () => Tag.bulkCreate(tagData);
 
 module.exports = seedTags;
